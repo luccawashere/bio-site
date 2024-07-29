@@ -1,0 +1,525 @@
+:root {
+  --background: #000000;
+  --foreground: #fffefe;
+  --accent: #ffffff;
+  --comment: #4a4a4a;
+  --caution: #ffb86c;
+  --glow-color-1: #ff79c6;
+  --glow-color-2: #ffb86c;
+  --glow-color-3: #50fa7b;
+  --glow-color-4: #bd93f9;
+}
+
+body.glow-color-1,
+body.glow-color-2,
+body.glow-color-3,
+body.glow-color-4 {
+  --accent: var(--glow-color-1);
+}
+
+body.glow-color-1 .profile-image,
+body.glow-color-1 .name,
+body.glow-color-1 .social-icon,
+body.glow-color-1 .view-counter,
+body.glow-color-1 .cursor-particle {
+  border-color: var(--glow-color-1);
+  color: var(--glow-color-1);
+  text-shadow: 0 0 10px var(--glow-color-1);
+  filter: drop-shadow(0 0 15px var(--glow-color-1));
+}
+
+body.glow-color-2 .profile-image,
+body.glow-color-2 .name,
+body.glow-color-2 .social-icon,
+body.glow-color-2 .view-counter,
+body.glow-color-2 .cursor-particle {
+  border-color: var(--glow-color-2);
+  color: var(--glow-color-2);
+  text-shadow: 0 0 10px var(--glow-color-2);
+  filter: drop-shadow(0 0 15px var(--glow-color-2));
+}
+
+body.glow-color-3 .profile-image,
+body.glow-color-3 .name,
+body.glow-color-3 .social-icon,
+body.glow-color-3 .view-counter,
+body.glow-color-3 .cursor-particle {
+  border-color: var(--glow-color-3);
+  color: var(--glow-color-3);
+  text-shadow: 0 0 10px var(--glow-color-3);
+  filter: drop-shadow(0 0 15px var(--glow-color-3));
+}
+
+body.glow-color-4 .profile-image,
+body.glow-color-4 .name,
+body.glow-color-4 .social-icon,
+body.glow-color-4 .view-counter,
+body.glow-color-4 .cursor-particle {
+  border-color: var(--glow-color-4);
+  color: var(--glow-color-4);
+  text-shadow: 0 0 10px var(--glow-color-4);
+  filter: drop-shadow(0 0 15px var(--glow-color-4));
+}
+
+
+.glow-color-1 .profile-image {
+  border: 5px solid var(--glow-color-1);
+}
+
+.glow-color-1 .name {
+  color: var(--glow-color-1);
+  text-shadow: 0 0 10px var(--glow-color-1);
+}
+
+.glow-color-2 .profile-image {
+  border: 5px solid var(--glow-color-2);
+}
+
+.glow-color-2 .name {
+  color: var(--glow-color-2);
+  text-shadow: 0 0 10px var(--glow-color-2);
+}
+
+.glow-color-3 .profile-image {
+  border: 5px solid var(--glow-color-3);
+}
+
+.glow-color-3 .name {
+  color: var(--glow-color-3);
+  text-shadow: 0 0 10px var(--glow-color-3);
+}
+
+.glow-color-4 .profile-image {
+  border: 5px solid var(--glow-color-4);
+}
+
+.glow-color-4 .name {
+  color: var(--glow-color-4);
+  text-shadow: 0 0 10px var(--glow-color-4);
+}
+
+* {
+  transition: all 0.5s ease-out;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: var(--foreground);
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--accent), var(--background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  transition: background 0.5s ease-out;
+  user-select: none;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+  /* Ensure it is behind all other content */
+  object-fit: cover;
+}
+
+#intro-screen,
+.container,
+.bio-card {
+  /* Ensure content is styled properly */
+  position: absolute;
+  z-index: 1;
+  /* Ensure content is above video */
+}
+
+.bio-card img {
+  pointer-events: none;
+  /* Prevents the image from receiving mouse events */
+}
+
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  backdrop-filter: blur(15px);
+  /* Moderate blur effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  cursor: pointer;
+  /* Indicate that the entire area is clickable */
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#enter-button {
+  background: rgba(0, 0, 0, 0.7);
+  /* Semi-transparent background */
+  border: none;
+  /* Remove default border */
+  color: var(--foreground);
+  /* Fully visible text color */
+  padding: 10px 20px;
+  font-size: 2em;
+  border-radius: 15px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+  /* Enhanced shadow for a glowing effect */
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#enter-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  /* Slightly visible on hover */
+  color: var(--accent);
+  /* Accent color on hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Keybinds Popup Styles */
+.keybinds-popup {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 20px;
+  text-align: center;
+}
+
+.keybinds-content {
+  position: relative;
+}
+
+.keybinds-content h2 {
+  margin-top: 0;
+}
+
+.keybinds-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.keybinds-content li {
+  margin: 10px 0;
+}
+
+.keybinds-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.keybinds-close:hover {
+  color: #ddd;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  /* Ensure proper stacking context */
+  z-index: 1;
+  /* Above the video but below the intro-screen */
+}
+
+.bio-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 5px solid var(--accent);
+  /* Accent border around profile image */
+  filter: drop-shadow(0 0 15px var(--accent));
+  /* Glowing effect */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.1);
+  /* Slightly enlarge on hover */
+  filter: drop-shadow(0 0 30px var(--accent));
+  /* More intense glowing effect on hover */
+}
+
+.name {
+  font-size: 2.5em;
+  color: var(--accent);
+  margin: 0;
+  text-shadow: 0 0 10px var(--accent);
+  /* Glowing text shadow */
+  animation: glowing-text 1.5s infinite;
+  /* Apply the glowing text animation */
+}
+
+@keyframes glowing-text {
+  0% {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 15px var(--accent), 0 0 20px var(--accent);
+  }
+
+  50% {
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent), 0 0 40px var(--accent);
+  }
+
+  100% {
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 15px var(--accent), 0 0 20px var(--accent);
+  }
+}
+
+.description {
+  font-size: 1.2em;
+  color: var(--foreground);
+  margin: 10px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+  /* Typing effect and blinking caret animation */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--accent);
+  }
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-link {
+  margin: 0 15px;
+  display: inline-block;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 10px var(--accent));
+  pointer-events: none;
+  /* Glowing effect */
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  /* Slightly enlarge on hover */
+  filter: drop-shadow(0 0 25px var(--accent));
+  /* More intense glowing effect on hover */
+}
+
+/* Audio Toggle Button */
+#audio-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  /* Ensure it's on top of other elements */
+}
+
+#audio-toggle svg {
+  width: 32px;
+  /* Adjust size for better visibility */
+  height: 32px;
+  /* Adjust size for better visibility */
+  fill: none;
+  /* Ensure only stroke is applied */
+  stroke: #ffffff;
+  /* Match the color scheme */
+  stroke-width: 1.5;
+  /* Consistent stroke width */
+  stroke-linecap: round;
+  /* Rounded line caps */
+  stroke-linejoin: round;
+  /* Rounded line joins */
+  cursor: pointer;
+  /* Ensure it's clickable */
+  margin: 0 5px;
+  /* Space between buttons */
+}
+
+#audio-toggle img:hover {
+  opacity: 0.8;
+}
+
+#audio-toggle #pause-button {
+  display: none;
+  /* Ensure pause button is hidden initially */
+}
+
+#audio-toggle img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+/* View Counter Container */
+#counter-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  /* Ensure it's on top of other elements */
+}
+
+.view-counter-icon {
+  width: 32px;
+  /* Consistent size */
+  height: 32px;
+  /* Consistent size */
+  fill: none;
+  /* Ensure only stroke is applied */
+  stroke: #ffffff;
+  /* Match the color scheme */
+  stroke-width: 1.5;
+  /* Consistent stroke width */
+  stroke-linecap: round;
+  /* Rounded line caps */
+  stroke-linejoin: round;
+  /* Rounded line joins */
+  margin-right: 8px;
+  /* Space between icon and counter */
+}
+
+.view-counter {
+  color: #ffffff;
+  /* White color for text */
+  font-size: 18px;
+  /* Adjust font size for visibility */
+}
+
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(100%);
+  transition: transform 0.5s ease, backdrop-filter 0.5s ease;
+  z-index: 1000;
+  /* Ensure it is on top of other content */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar.show {
+  transform: translateX(0);
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  margin: 20px 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--foreground);
+  font-size: 2em;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--accent);
+}
+
+/* Page blur effect */
+.blur-effect {
+  backdrop-filter: blur(5px);
+  transition: backdrop-filter 0.5s ease;
+}

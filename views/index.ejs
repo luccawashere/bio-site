@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= name %>'s Bio</title>
+    <link rel="stylesheet" href="/styles/style.css">
+
+    <meta property="og:title" content="<%= name %>" />
+    <meta property="og:description" content="<%= description %>" />
+    <meta property="og:image" content="<%= image %>" />
+    <meta property="og:url" content="https://bio-luca.xyz/" />
+    <meta property="og:type" content="bio" />
+    <style>
+        /* Ensure consistent sizing and styling */
+        #audio-toggle svg, .view-counter-icon {
+            width: 24px;
+            height: 24px;
+            fill: none; /* Ensure only stroke is applied */
+            stroke: #ffffff;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            vertical-align: middle; /* Align icons properly */
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background 
+    <video autoplay playsinline muted loop id="myVideo">
+        <source src="https://r2.e-z.host/f8c14cae-f13f-4fe5-a42f-8815774d026c/e6y7b9yv.webm" type="video/webm" />
+    </video> -->
+
+    <!-- Click to Enter Screen -->
+    <div id="intro-screen">
+        <button id="enter-button">Click to Enter</button>
+    </div>
+
+    <!-- Keybinds Popup -->
+    <div id="keybinds-popup" class="keybinds-popup">
+        <div class="keybinds-content">
+            <h2>Keybinds</h2>
+            <ul>
+                <li><strong>/</strong> - Show this keybinds popup</li>
+                <li><strong>Tab</strong> - Update glow color</li>
+                <li><strong>F</strong> - Toggle navbar visibility</li>
+                <!-- Add more keybinds as needed -->
+            </ul>
+            <button id="keybinds-close" class="keybinds-close">&times;</button>
+        </div>
+    </div>
+
+
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="#bio" id="bio-link">Bio</a></li>
+            <li><a href="https://bio-luca.xyz/" id="vessel-link" target="_blank">Vessel</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="bio-card">
+            <img src="<%= image %>" alt="<%= name %>" class="profile-image">
+            <h1 class="name"><%= name %></h1>
+            <p id="description" class="description"><%= description %></p>
+            <div class="social-links">
+                <a href="https://discord.com/users/11326914758309437441" target="_blank" class="social-link">
+                    <img src="/images/discord.svg" alt="Discord" class="social-icon">
+                </a>
+                <a href="https://lucacaa.dev/" target="_blank" class="social-link">
+                    <img src="/images/site.svg" alt="twitch" class="social-icon">
+                </a>
+                <a href="https://e-z.bio/lucaca" target="_blank" class="social-link">
+                    <img src="/images/e-z.svg" alt="E-Z.host" class="social-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Background Music Player -->
+    <audio id="background-music" preload="auto" loop></audio>
+    <!-- Toggle Button -->
+    <div id="audio-toggle">
+        <!-- Inline SVG for play button -->
+        <svg id="play-button" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 6C20.5 7.5 21 10 21 12C21 14 20.5 16.5 19 18M16 8.99998C16.5 9.49998 17 10.5 17 12C17 13.5 16.5 14.5 16 15M3 10.5V13.5C3 14.6046 3.5 15.5 5.5 16C7.5 16.5 9 21 12 21C14 21 14 3 12 3C9 3 7.5 7.5 5.5 8C3.5 8.5 3 9.39543 3 10.5Z" />
+        </svg>
+        <!-- Inline SVG for pause button -->
+        <svg id="pause-button" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 8.14307C3.4148 8.66137 3 9.49393 3 10.5V13.5C3 14.6046 3.5 15.5 5.5 16C7.5 16.5 9 21 12 21C12.6098 21 13.0337 19.3265 13.2717 17M3 3L21 21M9 4.60756C9.84604 3.71548 10.8038 3 12 3C12.7739 3 13.2484 5.69533 13.4233 9" />
+        </svg>
+    </div>
+    <!-- View Counter Display -->
+    <div id="counter-container">
+        <svg class="view-counter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.30147 15.5771C4.77832 14.2684 3.6904 12.7726 3.18002 12C3.6904 11.2274 4.77832 9.73158 6.30147 8.42294C7.87402 7.07185 9.81574 6 12 6C14.1843 6 16.1261 7.07185 17.6986 8.42294C19.2218 9.73158 20.3097 11.2274 20.8201 12C20.3097 12.7726 19.2218 14.2684 17.6986 15.5771C16.1261 16.9282 14.1843 18 12 18C9.81574 18 7.87402 16.9282 6.30147 15.5771ZM12 4C9.14754 4 6.75717 5.39462 4.99812 6.90595C3.23268 8.42276 2.00757 10.1376 1.46387 10.9698C1.05306 11.5985 1.05306 12.4015 1.46387 13.0302C2.00757 13.8624 3.23268 15.5772 4.99812 17.0941C6.75717 18.6054 9.14754 20 12 20C14.8525 20 17.2429 18.6054 19.002 17.0941C20.7674 15.5772 21.9925 13.8624 22.5362 13.0302C22.947 12.4015 22.947 11.5985 22.5362 10.9698C21.9925 10.1376 20.7674 8.42276 19.002 6.90595C17.2429 5.39462 14.8525 4 12 4ZM10 12C10 10.8954 10.8955 10 12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14C10.8955 14 10 13.1046 10 12ZM12 8C9.7909 8 8.00004 9.79086 8.00004 12C8.00004 14.2091 9.7909 16 12 16C14.2092 16 16 14.2091 16 12C16 9.79086 14.2092 8 12 8Z" />
+        </svg>
+        <div class="view-counter" id="view-count">0</div>
+    </div>
+    <!-- Link to external JavaScript file -->
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

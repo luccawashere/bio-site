@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     res.render('index', {
         name: 'luca',
         description: 'test',
-        image: 'https://media.discordapp.net/attachments/1132696452213260318/1267410628520312914/47972624dac010076140093160da661f.webp?ex=66a8afa1&is=66a75e21&hm=6b0aed9179611c02049f4da0363541defbc4fe48117d4069b69254195a8a2d90&=&format=webp&width=280&height=280'
+        image: 'https://r2.e-z.host/f8c14cae-f13f-4fe5-a42f-8815774d026c/x9l6w2ge.webp'
     });
 });
 
